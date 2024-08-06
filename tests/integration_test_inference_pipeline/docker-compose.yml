@@ -1,5 +1,6 @@
 networks:
-  adhock:
+  adhoc:
+    name: adhoc
 
 
 services:
@@ -19,7 +20,7 @@ services:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
     networks:
-      - adhock
+      - adhoc
 
   db:
     image: postgres
@@ -29,12 +30,4 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - adhock
-
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - "8777:8080"
-    networks:
-      - adhock
+      - adhoc
